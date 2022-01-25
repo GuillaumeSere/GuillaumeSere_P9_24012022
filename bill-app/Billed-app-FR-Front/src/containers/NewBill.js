@@ -44,7 +44,7 @@ export default class NewBill {
         let errorFormat = document.createElement('p');
         errorFormat.classList.add('text-danger', 'h6');
         errorFormat.setAttribute('data-testid', 'errorFormat');
-        errorFormat.innerText = "Choisir un format supporté '.png, .jpeg, ou .jpg'";
+        errorFormat.innerText = "Choisir un format supporté (.png, .jpeg, ou .jpg)";
         e.target.parentNode.append(errorFormat);
     }
  
