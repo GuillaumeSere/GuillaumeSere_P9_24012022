@@ -29,6 +29,7 @@ export default class {
 
   // not need to cover this function by tests
   getBills = () => {
+           /* istanbul ignore if */
     if (this.store) {
       return this.store
       .bills()

@@ -18,9 +18,11 @@ const row = (bill) => {
     `)
   }
 
-const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
-}
+  const rows = (data) => {
+    return (data && data.length) ? data.sort((a,b) => {if(a.date > b.date){
+      return -1;
+    }}).map(bill => row(bill)).join("") : ""
+  }
 
 export default ({ data: bills, loading, error }) => {
   
@@ -40,6 +42,12 @@ export default ({ data: bills, loading, error }) => {
       </div>
     </div>
   `)
+
+  if (loading) {
+    return LoadingPage()
+  } else if (error) {
+    return ErrorPage(error)
+  }
   
   return (`
     <div class='layout'>
