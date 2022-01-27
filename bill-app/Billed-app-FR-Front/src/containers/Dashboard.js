@@ -7,7 +7,7 @@ import Logout from "./Logout.js"
 
 export const filteredBills = (data, status) => {
   return (data && data.length) ?
-    data.filter(bill => {
+    data.filter((bill) => {
       let selectCondition
 
       // in jest environment
@@ -51,7 +51,7 @@ export const card = (bill) => {
 }
 
 export const cards = (bills) => {
-  return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
+  return bills && bills.length ? bills.map((bill) => card(bill)).join("") : ""
 }
 
 export const getStatus = (index) => {
@@ -87,7 +87,7 @@ export default class {
   handleEditTicket(e, bill, bills) {
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    if (this.counter % 2) {
+    if (this.counter % 2 === 0) {
       bills.forEach(b => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
       })
@@ -132,7 +132,7 @@ export default class {
   handleShowTickets(e, bills, index) {
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
-    if (this.counter % 2) {
+    if (this.counter % 2 === 0) {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
@@ -144,7 +144,8 @@ export default class {
       this.counter ++
     }
 
-    bills.forEach(bill => {
+    bills.forEach((bill) => {
+      $(`#open-bill${bill.id}`).off("click")
       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
 
@@ -158,9 +159,9 @@ export default class {
       return this.store
       .bills()
       .list()
-      .then(snapshot => {
+      .then((snapshot) => {
         const bills = snapshot
-        .map(doc => ({
+        .map((doc) => ({
           id: doc.id,
           ...doc,
           date: doc.date,

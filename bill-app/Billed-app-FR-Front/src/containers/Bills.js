@@ -16,7 +16,7 @@ export default class {
     new Logout({ document, localStorage, onNavigate })
   }
 
-  handleClickNewBill = e => {
+  handleClickNewBill = (e) => {
     this.onNavigate(ROUTES_PATH['NewBill'])
   }
 
@@ -28,15 +28,14 @@ export default class {
   }
 
   // not need to cover this function by tests
+  /* istanbul ignore next */
   getBills = () => {
-           /* istanbul ignore if */
     if (this.store) {
       return this.store
       .bills()
       .list()
-      .then(snapshot => {
-        const bills = snapshot
-          .map(doc => {
+      .then((snapshot) => {
+        const bills = snapshot.map((doc) => {
             try {
               return {
                 ...doc,
