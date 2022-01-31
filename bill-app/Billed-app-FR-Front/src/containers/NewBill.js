@@ -59,7 +59,7 @@ export default class NewBill {
       amount: parseInt(e.target.querySelector(`input[data-testid="amount"]`).value),
       date:  e.target.querySelector(`input[data-testid="datepicker"]`).value,
       vat: e.target.querySelector(`input[data-testid="vat"]`).value,
-      pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) || 20,
+      pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value),
       commentary: e.target.querySelector(`textarea[data-testid="commentary"]`).value,
       fileUrl: this.fileUrl,
       fileName: this.fileName,

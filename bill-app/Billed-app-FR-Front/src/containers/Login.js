@@ -58,7 +58,6 @@ export default class Login {
   }
 
   // not need to cover this function by tests
-   /* istanbul ignore next */
   login = (user) => {
     if (this.store) {
       return this.store
@@ -74,21 +73,17 @@ export default class Login {
   }
 
   // not need to cover this function by tests
-   /* istanbul ignore next */
   createUser = (user) => {
     if (this.store) {
-      return this.store
-      .users()
-      .create({data:JSON.stringify({
+       this.store
+       .users()
+      .doc(user.email)
+      .set({
         type: user.type,
-        name: user.email.split('@')[0],
-        email: user.email,
-        password: user.password,
-      })})
-      .then(() => {
-        console.log(`User with ${user.email} is created`)
-        return this.login(user)
+        name: user.email.split('@')[0]
       })
+      .then(() => console.log(`User with ${user.email} is created`))
+      .catch(error => error)
     } else {
       return null
     }

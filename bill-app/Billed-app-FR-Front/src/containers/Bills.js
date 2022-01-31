@@ -30,6 +30,8 @@ export default class {
   // not need to cover this function by tests
   /* istanbul ignore next */
   getBills = () => {
+    const userEmail = localStorage.getItem('user') ?
+    JSON.parse(localStorage.getItem('user')).email : ""
     if (this.store) {
       return this.store
       .bills()
@@ -53,9 +55,11 @@ export default class {
               }
             }
           })
+          .filter(bill => bill.email === userEmail)
           console.log('length', bills.length)
         return bills
       })
+      .catch(error => error)
     }
   }
 }
