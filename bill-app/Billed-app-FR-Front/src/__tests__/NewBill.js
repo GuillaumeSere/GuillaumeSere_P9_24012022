@@ -42,7 +42,7 @@
  
        //simulate loading file
        const handleChangeFile = jest.fn(() => newBill.handleChangeFile)
-       const inputFile = screen.getByTestId("file")
+       const inputFile = screen.queryByTestId("file")
  
        //Listen charging file
        inputFile.addEventListener("change", handleChangeFile)
@@ -55,7 +55,7 @@
        })
  
        //An error message have to appear
-       const error = screen.getByTestId('errorMessage')
+       const error = screen.queryByTestId('errorMessage')
        expect(error).toBeFalsy
      })
    })
@@ -69,7 +69,7 @@
      })          
  
      //We create newBill with handleSubmit method
-     const submit = screen.getByTestId('form-new-bill')
+     const submit = screen.queryByTestId('form-new-bill')
      const billTest = {
        name: "billTesting",
        date: "2022-01-24",
@@ -116,7 +116,7 @@
        expect(postSpy).toHaveBeenCalledTimes(1)
        expect(bills.data.length).toBe(4)
      })
-     test("fetches bills from an API and fails with 404 message error", async () => {
+     test("fetches bills from an API and fails with 404 message error",async () => {
        store.post.mockImplementationOnce(() =>
          Promise.reject(new Error("Erreur 404"))
        )
@@ -125,7 +125,7 @@
        const message = await screen.getByText(/Erreur 404/)
        expect(message).toBeTruthy()
      })
-     test("fetches messages from an API and fails with 500 message error", async () => {
+     test("fetches messages from an API and fails with 500 message error",async () => {
        store.post.mockImplementationOnce(() =>
          Promise.reject(new Error("Erreur 500"))
        )

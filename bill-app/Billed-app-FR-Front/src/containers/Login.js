@@ -61,10 +61,8 @@ export default class Login {
   login = (user) => {
     if (this.store) {
       return this.store
-      .login(JSON.stringify({
-        email: user.email,
-        password: user.password,
-      })).then(({jwt}) => {
+      .login(JSON.stringify({email: user.email,password: user.password,}))
+      .then(({jwt}) => {
         localStorage.setItem('jwt', jwt)
       })
     } else {
@@ -78,10 +76,7 @@ export default class Login {
        this.store
        .users()
       .doc(user.email)
-      .set({
-        type: user.type,
-        name: user.email.split('@')[0]
-      })
+      .set({type: user.type,name: user.email.split('@')[0]})
       .then(() => console.log(`User with ${user.email} is created`))
       .catch(error => error)
     } else {
