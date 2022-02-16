@@ -7,7 +7,7 @@ import Logout from "./Logout.js"
 
 export const filteredBills = (data, status) => {
   return (data && data.length) ?
-    data.filter((bill) => {
+    data.filter(bill => {
       let selectCondition
 
       // in jest environment
@@ -144,7 +144,7 @@ export default class {
       this.counter ++
     }
 
-    bills.forEach((bill) => {
+    bills.forEach(bill => {
       $(`#open-bill${bill.id}`).off("click")
       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
